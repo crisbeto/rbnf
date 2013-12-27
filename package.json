@@ -1,0 +1,18 @@
+{
+  "name": "rbnf",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "cldr": "~2.0.1",
+    "js-beautify": "~1.4.2"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2"
+  }
+}
