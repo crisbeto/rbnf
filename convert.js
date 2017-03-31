@@ -1,21 +1,33 @@
 const fs = require('fs');
 const path = require('path');
+const del = require('del');
 const beautify = require('js-beautify').js_beautify;
-const rulesDir = './rules/';
+const inDir = './original-rules/';
+const outDir = './rules/';
+const renderNumberExpr = /(\+ )?this\.renderNumber\(([^\)]+)\)( \+)?/g;
 const simpleNegativeExpr = /if \(n < 0\) return "(.*?);/g;
 const simplePositiveExpr = /if \(n >= 0\)/g;
 
-fs.readdirSync(rulesDir).forEach(name => {
+del.sync(outDir);
+fs.mkdirSync(outDir);
+
+/**
+ * Generates Numeral.js-compatible ordinal functions from CLDR data. This means stripping away
+ * the expressions that add the number itself and that include the minus sign.
+ * Note that doing this with Regex isn't the best idea, but it should get the job
+ * done since the expressions are pretty simple.
+ */
+fs.readdirSync(inDir).forEach(name => {
   let contents = fs
-    .readFileSync(path.join(rulesDir, name))
+    .readFileSync(path.join(inDir, name))
     .toString()
-    .replace(/(\+ )?this\.renderNumber\(([^\)]+)\)( \+)?/g, '');
+    .replace(renderNumberExpr, '');
 
   if (simpleNegativeExpr.test(contents) && simplePositiveExpr.test(contents)) {
     contents = contents.replace(simpleNegativeExpr, '').replace(simplePositiveExpr, '');
   }
 
-  fs.writeFile(path.join(rulesDir, name), beautify('module.exports = ' + contents, {
+  fs.writeFile(path.join(outDir, name), beautify('module.exports = ' + contents, {
     indent_level: 2
   }));
 });

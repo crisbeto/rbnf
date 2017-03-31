@@ -8,6 +8,7 @@
   "license": "BSD-2-Clause",
   "dependencies": {},
   "devDependencies": {
+    "del": "^2.2.2",
     "js-beautify": "^1.6.12"
   }
 }

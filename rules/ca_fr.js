@@ -1,11 +1,11 @@
 module.exports = {
     "renderDigitsOrdinal": function anonymous(n) {
-        if (n < 0) return "−" + this.renderDigitsOrdinal(-n);
-        if (n >= 0) return this.renderDigitsOrdinalMasculine(n)
+
+        return this.renderDigitsOrdinalMasculine(n)
     },
     "renderDigitsOrdinalMasculine": function anonymous(n) {
-        if (n < 0) return "−" + this.renderDigitsOrdinalMasculine(-n);
-        if (n >= 0) return  this.renderDigitsOrdinalIndicatorM(n)
+
+        return this.renderDigitsOrdinalIndicatorM(n)
     },
     "renderDigitsOrdinalIndicatorM": function anonymous(n) {
         if (n >= 100) return this.renderDigitsOrdinalIndicatorM(n % 100);
@@ -15,6 +15,6 @@ module.exports = {
         if (n >= 3) return "r";
         if (n >= 2) return "n";
         if (n >= 1) return "r";
-        if (n >= 0) return "è"
+        return "è"
     }
 }
