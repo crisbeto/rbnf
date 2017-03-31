@@ -1,9 +1,9 @@
 module.exports = {
     "renderDigitsOrdinal": function anonymous(n) {
-
-        return this.renderDigitsOrdinalIndicator(n)
+        if (n < 0) return this.renderDigitsOrdinal(-n);
+        if (n >= 0) return this.renderDigitsOrdinalIndicator(n)
     },
     "renderDigitsOrdinalIndicator": function anonymous(n) {
-        return "'инчи"
+        if (n >= 0) return "'инчи"
     }
 }

@@ -2,11 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const del = require('del');
 const beautify = require('js-beautify').js_beautify;
+
 const inDir = './original-rules/';
 const outDir = './rules/';
-const renderNumberExpr = /(\+ )?this\.renderNumber\(([^\)]+)\)( \+)?/g;
-const simpleNegativeExpr = /if \(n < 0\) return "(.*?);/g;
-const simplePositiveExpr = /if \(n >= 0\)/g;
 
 del.sync(outDir);
 fs.mkdirSync(outDir);
@@ -21,11 +19,8 @@ fs.readdirSync(inDir).forEach(name => {
   let contents = fs
     .readFileSync(path.join(inDir, name))
     .toString()
-    .replace(renderNumberExpr, '');
-
-  if (simpleNegativeExpr.test(contents) && simplePositiveExpr.test(contents)) {
-    contents = contents.replace(simpleNegativeExpr, '').replace(simplePositiveExpr, '');
-  }
+    .replace(/(\+ )?this\.renderNumber\(([^\)]+)\)( \+)?/g, '')
+    .replace(/if \(n < 0\) return "(.*?)" \+/g, 'if (n < 0) return');
 
   fs.writeFile(path.join(outDir, name), beautify('module.exports = ' + contents, {
     indent_level: 2

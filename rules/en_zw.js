@@ -1,7 +1,7 @@
 module.exports = {
     "renderDigitsOrdinal": function anonymous(n) {
-
-        return this.renderDigitsOrdinalIndicator(n)
+        if (n < 0) return this.renderDigitsOrdinal(-n);
+        if (n >= 0) return this.renderDigitsOrdinalIndicator(n)
     },
     "renderDigitsOrdinalIndicator": function anonymous(n) {
         if (n >= 100) return this.renderDigitsOrdinalIndicator(n % 100);
@@ -10,6 +10,6 @@ module.exports = {
         if (n >= 3) return "rd";
         if (n >= 2) return "nd";
         if (n >= 1) return "st";
-        return "th"
+        if (n >= 0) return "th"
     }
 }
