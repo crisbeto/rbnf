@@ -7,5 +7,7 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "js-beautify": "^1.6.12"
+  }
 }
