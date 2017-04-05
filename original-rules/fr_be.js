@@ -10,6 +10,8 @@
     "renderDordMascabbrev": function anonymous(n) {
         if (n >= 2) return "e";
         if (n >= 1) return "er";
-        if (n >= 0) return "e"
+        if (n >= 0) return "e";
+
+        return undefined;
     }
 }

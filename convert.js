@@ -20,7 +20,8 @@ fs.readdirSync(inDir).forEach(name => {
     .readFileSync(path.join(inDir, name))
     .toString()
     .replace(/(\+ )?this\.renderNumber\(([^\)]+)\)( \+)?/g, '')
-    .replace(/if \(n < 0\) return "(.*?)" \+/g, 'if (n < 0) return');
+    .replace(/if \(n < 0\) return "(.*?)" \+/g, 'if (n < 0) return')
+    .replace(/"-|−"/g, '"'); // replaces minus sign that comes after the character
 
   fs.writeFile(path.join(outDir, name), beautify('module.exports = ' + contents, {
     indent_level: 2

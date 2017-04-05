@@ -8,6 +8,7 @@
         if (n >= 0) return this.renderNumber(n, "#,##0") + this.renderDordMascabbrev(n)
     },
     "renderDordMascabbrev": function anonymous(n) {
-        if (n >= 0) return ":e"
+        if (n >= 0) return ":e";
+        return undefined;
     }
 }

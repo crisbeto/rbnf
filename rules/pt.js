@@ -8,6 +8,7 @@ module.exports = {
         if (n >= 0) return this.renderDordMascabbrev(n)
     },
     "renderDordMascabbrev": function anonymous(n) {
-        if (n >= 0) return "º"
+        if (n >= 0) return "º";
+        return undefined;
     }
 }

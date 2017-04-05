@@ -4,6 +4,7 @@ module.exports = {
         if (n >= 0) return this.renderDigitsOrdinalIndicator(n)
     },
     "renderDigitsOrdinalIndicator": function anonymous(n) {
-        if (n >= 0) return "'inci"
+        if (n >= 0) return "'inci";
+        return undefined;
     }
 }
